@@ -12,13 +12,13 @@ jobs:
       - image: circleci/golang:1.8
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
+      - checkout
+      - run: go get -v -t -d ./...
+      - run: go test -v ./...
       - persist_to_workspace:
           root: /go/src/github.com/kassybas/circle-test
           path:
             - .
-      - checkout
-      - run: go get -v -t -d ./...
-      - run: go test -v ./...
   build docker image:
     docker:
       - image: docker:dind

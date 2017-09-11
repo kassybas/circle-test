@@ -18,7 +18,7 @@ jobs:
       - persist_to_workspace:
           root: /go/src/github.com/kassybas/circle-test
           path:
-            - ./circle-test
+            - ./*
   build docker image:
     docker:
       - image: docker:dind

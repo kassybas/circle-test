@@ -1,12 +1,4 @@
 version: 2
-workflows:
-  version: 2
-  MyPipe:
-    jobs:
-      - build
-      - build docker image
-          requires: build
-
 jobs:
   build:
     docker:
@@ -31,3 +23,11 @@ jobs:
           at: /go/src/github.com/kassybas/circle-test
       - run: docker build -t trivago/trash:bcircle .
       - run: docker images
+workflows:
+  version: 2
+  MyPipe:
+    jobs:
+      - build
+      - build docker image
+          requires: build
+

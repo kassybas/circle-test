@@ -5,6 +5,7 @@ workflows:
     jobs:
       - build
       - build docker image
+          requires: build
 
 jobs:
   build:

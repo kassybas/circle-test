@@ -29,6 +29,8 @@ jobs:
       - setup_remote_docker
       - attach_workspace:
           at: /go/src/github.com/kassybas/circle-test
-      - run: docker build -t trivago/trash:bcircle .
+      - run: |
+          docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
+          docker build -t trivago/trash:bcircle .
       - run: docker push trivago/trash:bcircle
       - run: docker images

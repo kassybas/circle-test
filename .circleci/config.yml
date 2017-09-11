@@ -9,7 +9,7 @@ jobs:
       - setup_remote_docker
       - run: go get -v -t -d ./...
       - run: go test -v ./...
-  build_docker_image:
+  build docker image:
     docker:
       - image: docker:dind
     working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}

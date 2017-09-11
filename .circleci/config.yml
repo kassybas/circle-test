@@ -15,5 +15,5 @@ jobs:
     working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
     steps:
       - setup_remote_docker
-      - docker build -t trivago/trash:bcircle .
-      - docker images
+      - run: docker build -t trivago/trash:bcircle .
+      - run: docker images

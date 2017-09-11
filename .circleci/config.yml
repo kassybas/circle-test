@@ -17,9 +17,9 @@ jobs:
       - run: go test -v ./...
       - run: go build .
       - persist_to_workspace:
-          root: /go/src/github.com/kassybas/circle-test
+          root: ./
           path:
-            - ./circle-test
+            - circle-test
   build docker image:
     docker:
       - image: docker:dind

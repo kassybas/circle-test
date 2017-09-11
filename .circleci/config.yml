@@ -12,6 +12,8 @@ jobs:
       - image: circleci/golang:1.8
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
+      - checkout
+        persist_to_workspace: {root: /go/src/github.com/kassybas/circle-test, paths: [.]}
       - run: go get -v -t -d ./...
       - run: go test -v ./...
   build docker image:
@@ -20,6 +22,5 @@ jobs:
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
       - setup_remote_docker
-      - checkout
       - run: docker build -t trivago/trash:bcircle .
       - run: docker images

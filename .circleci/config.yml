@@ -17,7 +17,7 @@ jobs:
       - run: make build
   deploy:
     docker:
-      - image: alpine
+      - image: alpine:latest
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
       - checkout

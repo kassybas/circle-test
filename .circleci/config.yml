@@ -23,4 +23,4 @@ jobs:
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
       - checkout
-      - run: echo "I die now"
+      - run: echo "I release now"

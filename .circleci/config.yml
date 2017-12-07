@@ -10,14 +10,14 @@ workflows:
 jobs:
   build:
     docker:
-      - image: alpine:latest
+      - image: ubuntu
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
       - checkout
       - run: make build
   deploy:
     docker:
-      - image: alpine:latest
+      - image: ubuntu
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
       - checkout

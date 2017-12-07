@@ -4,9 +4,7 @@ workflows:
   MyPipe:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
+      - deploy
 jobs:
   build:
     docker:
@@ -14,11 +12,11 @@ jobs:
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
       - checkout
-      - run: make build
+      - run: echo "I build now"
   deploy:
     docker:
       - image: ubuntu
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
       - checkout
-      - run: make deploy
+      - run: echo "I die now"

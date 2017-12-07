@@ -4,33 +4,21 @@ workflows:
   MyPipe:
     jobs:
       - build
-      - build docker image:
+      - deploy
           requires:
             - build
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.8
+      - image: alpine:latest
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
       - checkout
-      - run: go get -v -t -d ./...
-      - run: go test -v ./...
-      - run: go build .
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - ./*
-  build docker image:
+      - run: make build
+  deploy:
     docker:
-      - image: docker:dind
+      - image: alpine:latest
     working_directory: /go/src/github.com/kassybas/circle-test
     steps:
-      - setup_remote_docker
-      - attach_workspace:
-          at: /go/src/github.com/kassybas/circle-test
-      - run: |
-          docker login -u ${DOCKERHUB_USER} -p ${DOCKERHUB_PASSWORD}
-          docker build -t trivago/trash:bcircle .
-      - run: docker push trivago/trash:bcircle
-      - run: docker images
+      - checkout
+      - run: make deploy

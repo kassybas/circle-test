@@ -5,6 +5,10 @@ workflows:
     jobs:
       - build
       - deploy
+          filters:
+            branches:
+              only:
+                - release
 jobs:
   build:
     docker:

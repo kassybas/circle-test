@@ -4,7 +4,7 @@ workflows:
   MyPipe:
     jobs:
       - build
-      - deploy
+      - deploy:
           filters:
             branches:
               only:

@@ -7,7 +7,7 @@ workflows:
       - deploy:
           requires: [build]
       - notify:
-          requires: [build]
+          requires: [deploy]
 jobs:
   build:
     docker:

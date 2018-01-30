@@ -5,10 +5,9 @@ workflows:
     jobs:
       - build
       - deploy:
-          filters:
-            branches:
-              only:
-                - release
+          requires: [build]
+      - notify:
+          requires: [build]
 jobs:
   build:
     docker:
@@ -24,3 +23,12 @@ jobs:
     steps:
       - checkout
       - run: echo "I die now"
+  notify:
+    docker:
+      - image: ubuntu
+    working_directory: /go/src/github.com/kassybas/circle-test
+    steps:
+      - checkout
+      - run:
+         command: echo "i notify now"
+         when: always
